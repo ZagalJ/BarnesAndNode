@@ -4,7 +4,7 @@ const sequelize = require('../config/connection.js');
 
 class Admin extends Model { }
 
-Admin.init(
+Admins.init(
     {
         // define columns
         id: {
@@ -17,7 +17,7 @@ Admin.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        password: {
+        email_password: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -31,4 +31,4 @@ Admin.init(
     }
 );
 
-module.exports = Admin;
+module.exports = Admins;

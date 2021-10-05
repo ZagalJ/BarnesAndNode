@@ -13,7 +13,7 @@ Books.init(
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
+        book_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -23,6 +23,10 @@ Books.init(
         },
         category: {
             type: DataTypes.STRING,
+            allowNull: false
+        },
+        isbn_num: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         stock_number: {

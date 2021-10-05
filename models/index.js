@@ -1,7 +1,7 @@
 // import models
 const Books = require('./Books');
 const User = require('./User');
-const Admin = require('./Admin');
+const Admin = require('./Admins');
 const Reviews = require('./Reviews');
 
 // Reviews belongTo User
