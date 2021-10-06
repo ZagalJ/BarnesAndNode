@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class Admin extends Model { }
+class Admins extends Model { }
 
-Admin.init(
+Admins.init(
     {
         // define columns
         id: {
@@ -17,7 +17,7 @@ Admin.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        password: {
+        email_password: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -27,8 +27,8 @@ Admin.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'admin',
+        modelName: 'admins',
     }
 );
 
-module.exports = Admin;
+module.exports = Admins;
