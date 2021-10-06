@@ -26,7 +26,7 @@ Books.init(
             allowNull: false
         },
         isbn_num: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT                      ,
             allowNull: false
         },
         stock_number: {

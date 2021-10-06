@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class Admin extends Model { }
+class Admins extends Model { }
 
 Admins.init(
     {
@@ -27,7 +27,7 @@ Admins.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'admin',
+        modelName: 'admins',
     }
 );
 

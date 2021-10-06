@@ -7,16 +7,12 @@ class Reviews extends Model { }
 Reviews.init(
     {
         // define columns
-        book_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        user_id: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
+        // book_id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     primaryKey: true,
+        //     autoIncrement: true
+        // },
     },
     {
         sequelize,
