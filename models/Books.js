@@ -35,7 +35,7 @@ Books.init(
         },
         reserved_status: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: true
         }
     },
     {
