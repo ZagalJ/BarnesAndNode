@@ -13,7 +13,7 @@ Books.init(
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
+        book_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -25,13 +25,17 @@ Books.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        isbn_num: {
+            type: DataTypes.BIGINT                      ,
+            allowNull: false
+        },
         stock_number: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
         reserved_status: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: true
         }
     },
     {
