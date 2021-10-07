@@ -1,7 +1,7 @@
 // import models
 const Books = require('./Books');
 const User = require('./User');
-const Admin = require('./Admin');
+const Admins = require('./Admins');
 const Reviews = require('./Reviews');
 
 // Reviews belongTo User
@@ -17,6 +17,6 @@ Reviews.belongsTo(Books, {
 module.exports = {
     Books,
     User,
-    Admin,
+    Admins,
     Reviews,
 };
