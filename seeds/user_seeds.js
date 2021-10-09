@@ -5,31 +5,31 @@ const userData = [
     first_name: 'Elvis',
     last_name: 'Presley',
     email: 'elvis@e.com',
-    email_password: '11111',
+    password: '11111',
   },
   {
     first_name: 'Abraham',
     last_name: 'Lincoln',
     email: 'abe@a.com',
-    email_password: '22222',
+    password: '22222',
   },
   {
     first_name: 'Betty',
     last_name: 'White',
     email: 'betty@b.com',
-    email_password: '33333',
+    password: '33333',
   },
   {
     first_name: 'Sofia',
     last_name: 'Vergara',
     email: 'sofia@s.com',
-    email_password: '44444',
+    password: '44444',
   },
   {
     first_name: 'Bob',
     last_name: 'Ross',
     email: 'bob@b.com',
-    email_password: '55555',
+    password: '55555',
   },
 ];
 

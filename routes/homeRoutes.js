@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {Books} = require ('../models')
+const withAuth = require('../utils/withAuth');
+
 
 //route for main page
 router.get('/', async (req, res) => {
@@ -13,6 +15,7 @@ router.get('/', async (req, res) => {
     res.render('home', {
       libraries
     });
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -53,5 +56,29 @@ router.get('/books/:id', async (req, res) => {
   }
 });
 
+//login
+router.get('/login', async (req,res) => {
+  if(req.session.loggedIn){
+    res.redirect('/');
+    return;
+  }  
+  res.render('login');
 
+});
+
+//sign up
+router.get('/signup', async (req,res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup');
+});
+
+//admin route
+router.get('/admin', async (req, res) => {
+  
+  res.render('adminLog')
+})
 module.exports = router;
