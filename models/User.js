@@ -1,8 +1,12 @@
 const { Model, DataTypes } = require('sequelize');
-
 const sequelize = require('../config/connection.js');
+const bcrypt = require('bcrypt');
 
-class User extends Model { }
+class User extends Model {
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.email_password);
+    }
+ }
 
 User.init(
     {
@@ -23,14 +27,33 @@ User.init(
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true,
+            validate: {
+                isEmail: true
+            }
         },
-        email_password: {
+        password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate:{
+                len:[4]
+            }
         },
     },
     {
+        hooks: {
+            async beforeCreate(newUserData) {
+                newUserData.password = await bcrypt.hash(newUserData.password, 10);
+                return newUserData;
+              },
+            // set up a beforeUpdate lifecycle hook to hash the password before a user object is updated in the database
+            async beforeUpdate(updatedUserData) {
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                return updatedUserData;
+              }
+        },
+    
         sequelize,
         timestamps: false,
         freezeTableName: true,

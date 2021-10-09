@@ -3,8 +3,9 @@ const path = require('path');
 const app = express();
 const sequelize = require('./config/connection.js')
 const exphbs = require('express-handlebars');
-const helpers = require('./utils/helpers');
+const helpers = require('./utils/withAuth');
 const routes = require('./routes/index.js');
+const session = require('express-session');
 
 
 
@@ -21,8 +22,20 @@ app.use(middleware);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.set('views', __dirname);
 
+// Set up sessions
+const SequelizeUser = require('connect-session-sequelize')(session.Store);
+const sess = {
+    secret: 'Super secret secret',
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeUser({
+      db: sequelize
+    })
+};
+  
+app.use(session(sess));
 
 
 // Create the Handlebars.js engine object with custom helper functions
@@ -32,20 +45,21 @@ const hbs = exphbs.create({ helpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.use(routes);
 // console.log(routes);
 //API 
 //require("./routes/adminRoute")(app);
-require("./routes/adminRouteS")(app)
-require("./routes/booksRouteS")(app)
-require("./routes/userRouteS")(app)
-// require("./routes/reviewRouteS")(app);
+// require("./routes/index")(app)
+// require("./routes/booksRouteS")(app)
+// const userRoutes = require("./routes/api/userRouteS")(app)
+// // require("./routes/reviewRouteS")(app);
+//  app.use(userRoutes);
+ app.use(routes);
 
 //require("./routes/userRoute")(app);
 
 
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, function () {
         console.log("App listening on PORT: " + PORT);
     });
