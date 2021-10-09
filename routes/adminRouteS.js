@@ -1,4 +1,4 @@
-const admin = require('../models/Admin');
+const admin = require('../models/Admins');
 
 module.exports = function (app) {
     app.get("/api/admin", async function (req, res) {
