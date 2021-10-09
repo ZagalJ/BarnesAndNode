@@ -14,8 +14,9 @@ CREATE TABLE books (
     category VARCHAR(100) NOT NULL,
     isbn_num INT NOT NULL,
     stock_number INT NOT NULL,
-    reserved_status BOOLEAN
-    
+    reserved_status BOOLEAN,
+    description VARCHAR(150),
+    filename VARCHAR(80) 
 );
 
 CREATE TABLE admins (

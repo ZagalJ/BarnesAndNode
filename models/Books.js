@@ -36,6 +36,14 @@ Books.init(
         reserved_status: {
             type: DataTypes.BOOLEAN,
             allowNull: true
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        filename:{
+            type: DataTypes.STRING,
+            allowNull: false
         }
     },
     {
