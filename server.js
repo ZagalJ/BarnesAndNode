@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars');
 const helpers = require('./utils/withAuth');
 const routes = require('./routes/index.js');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 
 
 
@@ -17,6 +18,7 @@ const middleware = (req, res, next) => {
 }
 
 app.use(middleware);
+app.use(bodyParser.urlencoded({extended:false}));
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -59,7 +61,7 @@ app.set('view engine', 'handlebars');
 
 
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, function () {
         console.log("App listening on PORT: " + PORT);
     });

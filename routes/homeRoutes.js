@@ -2,6 +2,8 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {Books} = require ('../models')
 const withAuth = require('../utils/withAuth');
+const db = require("../DB/index");
+const { Op } = require("sequelize");
 
 
 //route for main page
@@ -13,7 +15,7 @@ router.get('/', async (req, res) => {
       library.get({ plain: false })
     );
     res.render('home', {
-      libraries
+      libraries, logged_in: req.session.logged_in
     });
 
   } catch (err) {
@@ -58,7 +60,7 @@ router.get('/books/:id', async (req, res) => {
 
 //login
 router.get('/login', async (req,res) => {
-  if(req.session.loggedIn){
+  if(req.session.logged_in){
     res.redirect('/');
     return;
   }  
@@ -68,7 +70,7 @@ router.get('/login', async (req,res) => {
 
 //sign up
 router.get('/signup', async (req,res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect('/');
     return;
   }
@@ -81,4 +83,26 @@ router.get('/admin', async (req, res) => {
   
   res.render('adminLog')
 })
+
+
+//search route
+router.get('/search', async (req, res)=> {
+  const {term} = req.query;
+
+try {
+  const dbResults = await Books.findAll({
+    where: {   book_name: { [Op.like]: '%'+ term + '%'}}});
+
+    const results = dbResults.map((library) =>
+    library.get({ plain: false }),
+  );
+  res.render('searchResults', {
+    results, logged_in: req.session.logged_in
+  });
+  console.log(results)
+  }catch {(err => console.log(err))} ;
+
+})
+
+
 module.exports = router;

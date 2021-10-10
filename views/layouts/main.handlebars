@@ -24,16 +24,19 @@
         <a href="/" class="navbar-brand d-flex align-items-center">
           <strong>Barnes and Node</strong>
         </a>
-        <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button id="search" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <form class="form-inline mt-2 mt-md-0" action="/search" method="GET">
+            <input id="searchInput"class="form-control mr-sm-2" type="search" name="term" placeholder="Search" aria-label="Search">
+            <button id="search" class="btn btn-outline-primary my-2 my-sm-0" type="submit" value="search">Search</button>
           </form>
-          <a class="btn btn-sm btn-outline-secondary" href="/login">Log in</a>
 
+          {{#if logged_in}}
+            <button class="visible btn btn-sm btn-outline-secondary" id="logout">Logout</button>
+          {{else}}
+          <a class=" btn btn-sm btn-outline-secondary" href="/login">Log in</a>
+          {{/if}}
       </div>
     </div>
   </header>
-  
   {{{body}}}
   
   <footer class="text-muted py-5">
@@ -44,7 +47,8 @@
       <p class="mb-1">Thanks for visiting</p>
     </div>
   </footer>
-  
-
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </body>
 </html>

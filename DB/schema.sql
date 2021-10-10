@@ -19,6 +19,9 @@ CREATE TABLE books (
     filename VARCHAR(80) 
 );
 
+ALTER TABLE books ADD FULLTEXT (book_name) ;
+ALTER TABLE books ADD FULLTEXT (description);
+
 CREATE TABLE admins (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     email VARCHAR(100) NOT NULL,
