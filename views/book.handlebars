@@ -1,16 +1,18 @@
 
-  <div class="card shadow-sm">
-              <div class="card-body">
-                          <img id="cover" src="/images/{{bookdata.filename}}" alt="{{dbookdata.escription}}">
-                <p class="card-text"></p>
-                  <header>{{bookdata.book_name}}</header>
-                    <header>{{bookdata.author}}</header>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button onclick="location.href='/books/{{id}}'" type="button" class="btn btn-sm btn-outline-secondary">View more</button>
-                     <button type="button" class="btn btn-sm btn-outline-secondary">Reserve</button>
-                  </div>
-                  <small class="text-muted">{{bookdata.stock_number}}</small>
-                </div>
-              </div>
-            </div>
+<div class="card shadow-sm">
+  <div class="card-body">
+              <img id="cover" src="/images/{{bookdata.filename}}" alt="{{dbookdata.escription}}">
+    <p class="card-text"></p>
+      <header>{{bookdata.book_name}}</header>
+        <header>{{bookdata.author}}</header>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        {{!-- <button onclick="location.href='/books/{{id}}'" type="button" class="btn btn-sm btn-outline-secondary">View more</button> --}}
+        {{#if logged_in}}
+          <button type="button" class="btn btn-sm btn-outline-secondary">Reserve</button>
+        {{/if}}
+      </div>
+      <small class="text-muted">{{bookdata.stock_number}}</small>
+    </div>
+  </div>
+</div>
