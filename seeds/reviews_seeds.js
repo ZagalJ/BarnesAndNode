@@ -1,19 +1,22 @@
 const { Reviews } = require('../models');
 
 const reviewsData = [
-  // {
-  //   book_id: '1234'
-
-  // },
-  // {
-  //   book_id: '32424'
-  // },
-  // {
-  //   book_id: '45345'
-  // },
-  // {
-  //   book_id: '43534'
-  // },
+  {
+    user_id: 2,
+  },
+  
+  {
+    user_id: 3,
+  },
+  
+  {
+    user_id: 1,
+  },
+  
+  {
+    user_id: 4,
+  },
+  
 ];
 
 const seedReviews = () => Reviews.bulkCreate(reviewsData);
