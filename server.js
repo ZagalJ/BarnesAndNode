@@ -9,7 +9,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 
 
-const PORT = process.env.PORT || 7006;
+const PORT = process.env.PORT || 8000;
 
 const middleware = (req, res, next) => {
     console.log(`${req.method} ${req.path} at ${Date.now()}`);
@@ -17,7 +17,6 @@ const middleware = (req, res, next) => {
 }
 
 app.use(middleware);
-app.use(bodyParser.urlencoded({extended:false}));
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
