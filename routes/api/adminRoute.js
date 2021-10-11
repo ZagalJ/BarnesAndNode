@@ -1,4 +1,3 @@
-const db = require("../../db");
 
 module.exports = function (app) {
     app.get("/api/admin", function (req, res) {
