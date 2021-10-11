@@ -50,7 +50,7 @@ router.get('/books/:id', async (req, res) => {
     const bookdata = dbBookdata.get({ plain: true });
     console.log("libraries: ", bookdata);
     res.render('book', { 
-      bookdata 
+      bookdata, logged_in: req.session.logged_in 
     });
   } catch (err) {
     console.log(err);
@@ -64,7 +64,7 @@ router.get('/login', async (req,res) => {
     res.redirect('/');
     return;
   }  
-  res.render('login');
+  res.render('login', {logged_in: req.session.logged_in});
 
 });
 
@@ -75,7 +75,7 @@ router.get('/signup', async (req,res) => {
     return;
   }
 
-  res.render('signup');
+  res.render('signup', {logged_in: req.session.logged_in});
 });
 
 //admin route
