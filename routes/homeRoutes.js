@@ -50,7 +50,7 @@ router.get('/books/:id', async (req, res) => {
     const bookdata = dbBookdata.get({ plain: true });
     console.log("libraries: ", bookdata);
     res.render('book', { 
-      bookdata, logged_in: req.session.logged_in 
+      bookdata, logged_in: req.session.logged_in
     });
   } catch (err) {
     console.log(err);

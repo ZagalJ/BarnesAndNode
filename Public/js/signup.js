@@ -1,3 +1,4 @@
+// Sign up form handler
 async function signupFormHandler(event) {
     event.preventDefault();
 
@@ -10,7 +11,7 @@ async function signupFormHandler(event) {
     // if all three fields have content
     if (first_name && last_name && email && password) {
         // POST the new user to the user table in the database
-        const response = await fetch('api/users/signup', {
+        const response = await fetch('/api/users/signup', {
             method: 'post',
             body: JSON.stringify({
                 first_name,
