@@ -24,13 +24,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up sessions
-const SequelizeUser = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
     secret: 'Super secret secret',
     cookie: {},
     resave: false,
     saveUninitialized: true,
-    store: new SequelizeUser({
+    store: new SequelizeStore({
       db: sequelize
     })
 };
