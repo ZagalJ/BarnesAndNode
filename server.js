@@ -9,8 +9,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 
 
-
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 7006;
 
 const middleware = (req, res, next) => {
     console.log(`${req.method} ${req.path} at ${Date.now()}`);
@@ -39,7 +38,6 @@ const sess = {
   
 app.use(session(sess));
 
-
 // Create the Handlebars.js engine object with custom helper functions
 const hbs = exphbs.create({ helpers });
 
@@ -47,22 +45,10 @@ const hbs = exphbs.create({ helpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// console.log(routes);
-//API 
-//require("./routes/adminRoute")(app);
-// require("./routes/index")(app)
-// require("./routes/booksRouteS")(app)
-// const userRoutes = require("./routes/api/userRouteS")(app)
-// // require("./routes/reviewRouteS")(app);
-//  app.use(userRoutes);
- app.use(routes);
-
-//require("./routes/userRoute")(app);
-
-
+app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, function () {
-        console.log("App listening on PORT: " + PORT);
+    app.listen(PORT, () => {
+        console.log("App listening on PORT: ", PORT);
     });
 })
