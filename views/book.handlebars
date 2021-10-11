@@ -1,13 +1,12 @@
-
 <div class="card shadow-sm">
   <div class="card-body">
-              <img id="cover" src="/images/{{bookdata.filename}}" alt="{{dbookdata.escription}}">
+              <img id="cover" src="/images/{{bookdata.filename}}" alt="{{dbookdata.description}}">
     <p class="card-text"></p>
       <header>{{bookdata.book_name}}</header>
         <header>{{bookdata.author}}</header>
+        <header class="card-text">{{bookdata.description}}</header>
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group">
-        {{!-- <button onclick="location.href='/books/{{id}}'" type="button" class="btn btn-sm btn-outline-secondary">View more</button> --}}
         {{#if logged_in}}
           <button type="button" class="btn btn-sm btn-outline-secondary">Reserve</button>
         {{/if}}
@@ -16,3 +15,5 @@
     </div>
   </div>
 </div>
+
+<script src="/js/reserve.js"></script>
