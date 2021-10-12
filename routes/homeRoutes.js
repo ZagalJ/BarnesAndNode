@@ -47,7 +47,6 @@ router.get('/books/:id', async (req, res) => {
     });
 
     const bookdata = dbBookdata.get({ plain: true });
-    console.log("libraries: ", bookdata);
     res.render('book', { 
       bookdata, logged_in: req.session.logged_in
     });
@@ -82,7 +81,10 @@ router.get('/admin', async (req, res) => {
   
   res.render('adminLog')
 })
-
+router.get('/adminview', async (req, res) => {
+  
+  res.render('admin')
+})
 
 //search route
 router.get('/search', async (req, res)=> {
