@@ -7,7 +7,7 @@ const helpers = require('./utils/withAuth');
 const routes = require('./routes/index.js');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-
+var compression = require('compression')
 
 const PORT = process.env.PORT || 8000;
 
@@ -22,6 +22,17 @@ app.use(middleware);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(compression({ filter: shouldCompress }))
+ 
+function shouldCompress (req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+ 
+  // fallback to standard filter function
+  return compression.filter(req, res)
+}
 
 // Set up sessions
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
